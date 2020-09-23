@@ -7,6 +7,14 @@ function SignIn(props) {
         password: ""
     })
 
+    const handleChange = (e) => {
+        const {id, value} = e.target
+        setState(prevState => ({
+            prevState,
+            [id] : value
+        }))
+    }
+
     return (
         <Container>
             <Form>
@@ -15,7 +23,9 @@ function SignIn(props) {
                     <Form.Control 
                         type="email"
                         id="email"
-                        placeholder="Email Address" />
+                        placeholder="Email Address"
+                        value = {state.email}
+                        onChange = {handleChange} />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
@@ -23,7 +33,9 @@ function SignIn(props) {
                     <Form.Control
                         type="password"
                         id="password"
-                        placeholder="Password" />
+                        placeholder="Password"
+                        value = {state.password}
+                        onChange = {handleChange} />
                 </Form.Group>
                 
                 <Form.Text className="text-muted">
