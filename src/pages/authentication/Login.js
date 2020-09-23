@@ -5,7 +5,7 @@ import SignIn from '../../components/login_test'
 function Login() {
   return (
     <Container>
-        <p>Login</p>
+        <h1>Welcome Back</h1>
         <SignIn />
     </Container>
     );

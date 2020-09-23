@@ -1,29 +1,42 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 
-function SignIn() {
+function SignIn(props) {
+    const [state , setState] = useState({
+        email: "",
+        password: ""
+    })
+
     return (
         <Container>
-            <p>Alison signin component</p>
             <Form>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control type="email" placeholder="Enter email" />
-                    <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                    </Form.Text>
+                    <Form.Control 
+                        type="email"
+                        id="email"
+                        placeholder="Email Address" />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" placeholder="Password" />
+                    <Form.Control
+                        type="password"
+                        id="password"
+                        placeholder="Password" />
                 </Form.Group>
-                <Form.Group controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
+                
+                <Form.Text className="text-muted">
+                    Forgot your login info? Retrieve here.
+                </Form.Text>
+
                 <Button variant="primary" type="submit">
                     Submit
                 </Button>
+
+                <Form.Text className="text-muted">
+                    Not a member yet? Sign up here.
+                </Form.Text>
                 </Form>
         </Container>
     );
