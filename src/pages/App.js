@@ -8,6 +8,7 @@ import NotFound from '../pages/NotFound';
 import Test from '../pages/Test';
 import Registration from '../pages/authentication/Registration';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Login from './authentication/Login';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route exact path="/" component={ Home } />
         <Route path="/resources" component={ Resources } />
         <Route exact path="/registration" component={ Registration } />
+        <Route exact path="/login" component={ Login } />
         <Route exact path="/test" component={Test} />
         <Route component={NotFound}/>
       </Switch>

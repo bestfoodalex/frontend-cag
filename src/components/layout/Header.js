@@ -20,6 +20,7 @@ function Header() {
       <Nav.Link href="/who-we-are">WHO WE ARE</Nav.Link>
       <Nav.Link href="/resources">RESOURCES</Nav.Link>
       <Nav.Link href="/blog">BLOG</Nav.Link>
+      <Nav.Link href="/login">Log In</Nav.Link>
       </Nav>
         <Button inline href="/registration" variant="green text-white" size='md'>LOG IN \ SIGN UP</Button>
   </Navbar.Collapse>

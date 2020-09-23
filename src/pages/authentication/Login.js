@@ -1,8 +1,13 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
+import SignIn from '../../components/login_test'
 
 function Login() {
   return (
-    <p>Login</p>
+    <Container>
+      <p>Login</p>
+      <SignIn />
+    </Container>
     );
 }
 
