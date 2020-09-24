@@ -15,6 +15,11 @@ function SignIn(props) {
         }))
     }
 
+    const handleSubmitClick = (e) => {
+        console.log('test log')
+     }
+    
+
     return (
         <Container>
             <Form>
@@ -22,7 +27,6 @@ function SignIn(props) {
                     <Form.Label>Email address</Form.Label>
                     <Form.Control 
                         type="email"
-                        id="email"
                         placeholder="Email Address"
                         value = {state.email}
                         onChange = {handleChange} />
@@ -32,7 +36,6 @@ function SignIn(props) {
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         type="password"
-                        id="password"
                         placeholder="Password"
                         value = {state.password}
                         onChange = {handleChange} />
@@ -42,7 +45,10 @@ function SignIn(props) {
                     Forgot your login info? Retrieve here.
                 </Form.Text>
 
-                <Button variant="primary" type="submit">
+                <Button
+                    variant="primary"
+                    type="submit"
+                    onClick={handleSubmitClick}>
                     Submit
                 </Button>
 
