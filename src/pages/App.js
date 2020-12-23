@@ -7,6 +7,8 @@ import FAQ from './FAQ';
 import NotFound from './Not-Found';
 import TOS from './Terms-of-Service';
 import WhoWeAre from './Who-We-Are';
+import Signup from './Signup';
+import Login from './Login';
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
@@ -20,6 +22,8 @@ function App() {
         <Route exact path="/faq" component={FAQ}/>
         <Route exact path="/terms-of-service" component={TOS}/>
         <Route exact path="/who-we-are" component={WhoWeAre}/>
+        <Route exact path="/sign-up" component={Signup}/>
+        <Route exact path="/login" component={Login}/>
         <Route component={NotFound}/>
       </Switch>
       <Footer/>

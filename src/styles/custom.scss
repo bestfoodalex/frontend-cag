@@ -147,5 +147,42 @@ font-weight:bold;
     color:$main-font-color; 
 }
 
+.swiper-button-disabled {
+    visibility: hidden;
+}
+
+.change-font{
+    font-family:$lora;
+}
+
+.pill-margin {
+    margin:10px;
+}
+
+.profile-shadow {
+    box-shadow: 2px 2px 10px #00000029;
+    border-radius: 8px;
+    background-color: white;
+    padding:20px;
+}
+
+.font-title-profile {
+    color: #707070;
+    letter-spacing: 0.32px;
+    font-size:32px;
+
+}
+
+.font-pronouns {
+    color:#707070;
+    letter-spacing:0.2px;
+    font-size: 20px;
+}
+
+.skills {
+    letter-spacing: 0.2px;
+    color: #707070;
+    font-size:20px;
+}
 
 @import "~bootstrap/scss/bootstrap";
