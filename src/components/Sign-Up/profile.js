@@ -6,7 +6,7 @@ import Image from 'react-bootstrap/Image'
 import Chomsky from '../../images/chomsky_king.png';
 
 function Profile (props) {
-    const artistInfo = props.info;
+    const artistInfo = props.info();
     return (
         <Container className="margin-container">
         <h2 className="tagline">Your Profile</h2>
@@ -16,8 +16,8 @@ function Profile (props) {
             <Image src={Chomsky} width="100%" alt="your profile"/>
             <div className="profile-shadow">
             <p>Height: {artistInfo.height}</p>
-            <p>Ethnicity: {artistInfo.ethnicity.join(' , ')}</p>
-            <p>Agency: {artistInfo.equityStatus}</p>
+            <p>Ethnicity: {artistInfo.ethnicity.join(' , ') || ""}</p>
+            <p>Agency: {artistInfo.equityStatus }</p>
             <p>Equity Status: {artistInfo.equityStatus}</p>
             <p>Vocal Range: {artistInfo.vocalRange}</p>
             </div>

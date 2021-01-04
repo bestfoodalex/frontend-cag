@@ -31,20 +31,20 @@ function ActorInfo1(props) {
           <Form.Check
           type="radio"
           label="Yes"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios1"
+          name="formHorizontalRadiosa"
+          id="formHorizontalRadios1a"
         />
         <Form.Check
           type="radio"
           label="No"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios2"
+          name="formHorizontalRadiosa"
+          id="formHorizontalRadios2a"
         />
         <Form.Check
           type="radio"
           label="I do not wish to respond"
-          name="formHorizontalRadios"
-          id="formHorizontalRadios3"
+          name="formHorizontalRadiosa"
+          id="formHorizontalRadios3a"
         />
           <Form.Label>Do you identify as a person of color?</Form.Label>
           <Form.Check

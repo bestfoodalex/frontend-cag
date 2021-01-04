@@ -4,7 +4,7 @@ import Yellow_Blob_2 from '../../images/yellow_blob_2.svg'
 import Dancer from '../../images/wwww-3.svg'
 
 function PrivacyStatement(props) {
-  const greet = "Hi, ".concat(props.firstName);
+  const greet = "Hi, ".concat(props.firstName());
   return (
       <Holder1 
       greeting={greet}

@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import SignUpBasics from '../components/Sign-Up/sign-up-basics';
 import WherePerform from '../components/Sign-Up/where-do-you-perform';
@@ -10,6 +10,135 @@ import Demographics from '../components/Sign-Up/demographics';
 import Positions from '../components/Sign-Up/positions';
 import Profile from '../components/Sign-Up/profile';
 import { Container } from 'react-bootstrap';
+
+class Signup extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      type:'On-Stage',
+      firstName:'',
+      lastName:'',
+      email:'',
+      pronouns:'',
+      ethnicity:[],
+      height:'',
+      vocalRange:'',
+      skills:[],
+      equityStatus:'',
+      agency:'',
+      bio:'',
+      website:'',
+      profile:false,
+      typeProfile:true,
+      path:[],
+      index:0,
+    }
+    this.handleType = this.handleType.bind(this);
+    this.setSkills = this.setSkills.bind(this);
+    this.handleAppend = this.handleAppend.bind(this);
+    this.handleStrings = this.handleStrings.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.getName = this.getName.bind(this);
+    this.getFinalState = this.getFinalState.bind(this);
+  }
+
+  componentDidMount () {
+    var pathBoth = [<WherePerform handleType={this.handleType}/>, <SignUpBasics handleStrings={this.handleStrings}/>, 
+    <PrivacyStatement firstName={this.state.firstName}/>,<ActorInfo1 handleStrings={this.handleStrings} handleAppend={this.handleAppend}/>];
+    this.setState(() => ({
+      path:pathBoth
+    }));
+  }
+
+  handleType(typeString) {
+    var pathBoth = [<WherePerform handleType={this.handleType}/>, <SignUpBasics handleStrings={this.handleStrings}/>, 
+      <PrivacyStatement firstName={this.getName}/>,<ActorInfo1 handleStrings={this.handleStrings} handleAppend={this.handleAppend}/>];
+      const actorPath = [<ActorInfo2 handleStrings={this.handleStrings}/>,<ActorInfo3/>,<Positions handleSkill={this.setSkills}/>,
+      <Demographics handleStrings={this.handleStrings}/>];
+      const crewPath = [<Positions handleSkill={this.setSkills}/>,<Demographics handleStrings={this.handleStrings}/>];
+
+    this.setState({type:typeString});
+    if (typeString ==="On-Stage") {
+      this.setState(() => ({
+        path:pathBoth.concat(actorPath)
+      })); 
+    } else {
+      this.setState(() => ({
+        path:pathBoth.concat(crewPath)
+      }));
+    }
+  }
+
+  getFinalState() {
+    console.log(this.state);
+    return(this.state);
+  }
+
+  getName () {
+    return (this.state.firstName);
+  }
+
+  setSkills (skill) {
+    this.setState((prevState) => ({
+      skills:prevState.skills.concat(skill)
+    }));
+  }
+
+  handleAppend (e) {
+    const {name,value} = e.target;
+    this.setState((prevState) => ({
+      [name]:prevState[name].concat(value)
+    }));
+  }
+
+  handleStrings (e) {
+    const {name,value} = e.target;
+    this.setState(() => ({
+      [name]:value
+    }));
+    console.log(this.state.firstName);
+  }
+
+  handleSubmit () {
+    if (this.state.index>this.state.path.length-2) {
+      this.setState(() => ({
+        profile:true 
+      }));
+    } else {
+      this.setState(prevState => ({
+        index:prevState.index+1
+      }));
+    }
+  }
+
+  render() {
+    return (
+      <div>
+      {
+      this.state.profile ? 
+      <Profile info={this.getFinalState}/>
+      :
+      <div>
+        {
+          this.state.path[this.state.index]
+        }
+      <Container>
+      <Button onClick={this.handleSubmit} className="d-flex ml-auto">CONTINUE</Button>
+      </Container>
+      </div>
+      }
+      </div>
+    );
+  }
+}
+
+
+
+
+
+
+/*
+
 
 
 function Signup() {
@@ -27,9 +156,6 @@ function Signup() {
     agency:'',
     bio:'',
     website:'',
-  }
-
-  const component = {
     profile:false,
     typeProfile:true,
     path:[],
@@ -37,19 +163,35 @@ function Signup() {
   }
 
   const [individual,setIndividualState] = useState(individualState);
-  const [comp,setComp] = useState(component);
 
   function setSkills(skill) {
-    setIndividualState({...individual,["skills"]:individual["skills"].concat(skill)});
+    setIndividualState( prevState => {
+      return{...prevState, ["skills"]:prevState["skills"].concat(skill)}
+    });
   }
 
   function handleType(typeString) {
-    setIndividualState({...individual,["typeProfile"]:typeString});
+    setIndividualState( prevState => {
+      return {...prevState, ["typeProfile"]:typeString};
+    });
     if (typeString==="On-Stage") {
-      setComp({...comp,["path"]:pathBoth.concat(actorPath)});
+      setIndividualState(prevState => {
+        return {...prevState, ["path"]:pathBoth.concat(actorPath)};
+      });
     } else {
-      setComp({...comp,["path"]:pathBoth.concat(crewPath)});
+      setIndividualState(prevState => {
+        return {...prevState, ["path"]:pathBoth.concat(crewPath)};
+      });
     }
+  }
+
+  async function getFirstName() {
+    var name = "";
+    setIndividualState(prevState => {
+      name = prevState["firstName"];
+      return prevState
+    });
+    return name
   }
 
   const handleStrings = (e) => {
@@ -62,34 +204,43 @@ function Signup() {
 
   function handleAppend (e) {
     var value = e.target.value.toString()
-    setIndividualState({...individual,[e.target.name]:individual[e.target.name].concat(value)});
+    setIndividualState(prevState => {
+      return {...prevState, [e.target.name]:prevState[e.target.name].concat(value)};
+    });
   }
 
   function handleSubmit () {
-    if (comp.index>comp.path.length-2) {
-      setComp({...comp,["profile"]:true});
+    if (individual.index>individual.path.length-2) {
+      setIndividualState(prevState => {
+        return {...prevState, ["profile"]:true};
+      });      
     } else {
-      setComp({...comp,["index"]:comp["index"]+1});
+      setIndividualState(prevState => {
+        return {...prevState, ["index"]:prevState["index"]+1};
+      });
     }
   }
-    var pathBoth = [<WherePerform handleType={handleType}/>, <SignUpBasics handleStrings={handleStrings}/>, 
-    <PrivacyStatement firstName={individual.firstName}/>,<ActorInfo1 handleStrings={handleStrings} handleAppend={handleAppend}/>];
+
+  var pathBoth = [<WherePerform handleType={handleType}/>, <SignUpBasics handleStrings={handleStrings}/>, 
+    <PrivacyStatement firstName={getFirstName}/>,<ActorInfo1 handleStrings={handleStrings} handleAppend={handleAppend}/>];
     const actorPath = [<ActorInfo2 handleStrings={handleStrings}/>,<ActorInfo3/>,<Positions handleSkill={setSkills}/>,<Demographics handleStrings={handleStrings}/>];
     const crewPath = [<Positions handleSkill={setSkills}/>,<Demographics handleStrings={handleStrings}/>]
 
     useEffect(()=> {
-      setComp({...comp,["path"]:pathBoth});
+      setIndividualState(prevState => {
+        return {...prevState, ["path"]:pathBoth};
+      });
     },[]);
 
   return (
   <div>
   {
-    comp.profile ? 
+    individual.profile ? 
     <Profile info={individual}/>
     :
     <div>
       {
-        comp.path[comp.index]
+        individual.path[individual.index]
       }
     <Container>
     <Button onClick={handleSubmit} className="d-flex ml-auto">CONTINUE</Button>
@@ -99,5 +250,5 @@ function Signup() {
   </div>
   )
 }
-
+*/
 export default Signup;
