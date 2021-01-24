@@ -62,7 +62,7 @@ const WhoWeAre = () => {
     },
     {
       id: 7,
-      name: 'ALEX JEWELL',
+      name: 'ALEX JEWELLL',
       pronoun: 'HE/HIM',
       subtitle: 'Engineering Lead',
       image: Jewell
