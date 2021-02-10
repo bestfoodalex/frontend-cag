@@ -21,7 +21,7 @@ const Footer = () => (
         TERMS OF SERVICE
       </Nav.Link>
       <Nav.Link as={Link} to="/faq">
-        FAQ
+        FAQ.
       </Nav.Link>
       <Nav.Link href="http://www.facebook.com/chiartistguide">
         <FooterLogo src={Facebook} />
